@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Identification</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <script>
+        function validateForm() {
+            var userInput = document.getElementById("text").value;
+            if (/^\d+$/.test(userInput)) {
+                alert("Please enter text (numeric values are not allowed).");
+                return false;
+            }
+            // if (userInput.trim() === "") {
+            //     alert("Text box cannot be blank.");
+            //     return false;
+            // }
+            // return true;
+        }
+    </script>
+
+</head>
+<body>
+    <!-- Sidebar to display the list of languages -->
+    <div class="sidebar">
+        <h2> Detectable Languages</h2>
+        <ul>
+            <li>Persian</li>
+            <li>Korean</li>
+            <li>Indonesian</li>
+            <li>Persian</li>        
+            <li>Dutch</li>           
+            <li>Estonian</li>      
+            <li>Hindi</li>          
+            <li>Urdu</li>          
+            <li>French</li>    
+            <li>Turkish</li>      
+            <li>Latin</li>       
+            <li>Arabic</li>        
+            <li>Russian</li>       
+            <li>Thai</li>         
+            <li>Spanish</li>        
+            <li>English</li>     
+            <li>Japanese</li>       
+            <li>Pashto</li>        
+            <li>Chinese</li>        
+            <li>Tamil</li>          
+            <li>Swedish</li>        
+            <li>Romanian</li>  
+            <li>Portugese</li>      
+            </ul>
+
+            
+ </div>
+
+    <div class="translate-button">
+        <button type="button" onclick="window.open('https://translate.google.com/', '_blank')">Google translate</button>
+    </div>
+
+    <div class="container">
+        <h1>Language Detection Using ML</h1>
+        <form method="POST" onsubmit="return validateForm()">
+            <label for="text">Enter Your Text:</label>
+            <textarea id="text" name="text" rows="4" placeholder="Enter text here" required="required">{{ request.form['text'] }}</textarea>
+            <button type="submit">Detect Language</button>
+        </form>
+        <div class="result">
+            {% if prediction %}
+                <p>Detected Language: {{ prediction }}</p>
+            {% endif %}
+        </div>
+    </div>
+    </body>
+    </html>
+    
